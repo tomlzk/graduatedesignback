@@ -1,5 +1,8 @@
 package com.example.back.controller;
 
+import com.example.back.service.IExamService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,5 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/exam")
 public class ExamController {
+    @Autowired
+
 
 }

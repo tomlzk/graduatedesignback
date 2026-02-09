@@ -17,7 +17,14 @@ public class EnrollQueryDTO {
      */
     private String status;
 
+    /**
+     * 页号
+     */
     private Integer pageNum = 1;
 
+
+    /**
+     * 一页的最大项数
+     */
     private Integer pageSize = 10;
 }
