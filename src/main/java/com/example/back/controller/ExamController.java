@@ -18,6 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/exam")
 public class ExamController {
     @Autowired
-
+    private IExamService examService;
 
 }

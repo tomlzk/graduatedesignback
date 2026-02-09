@@ -1,7 +1,12 @@
 package com.example.back.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.example.back.dto.score.ScoreAddDTO;
+import com.example.back.dto.score.ScoreQueryDTO;
+import com.example.back.dto.score.ScoreUpdateDTO;
 import com.example.back.entity.Score;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.back.vo.score.ScoreVO;
 
 /**
  * <p>
@@ -13,4 +18,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IScoreService extends IService<Score> {
 
+    void addScore(ScoreAddDTO dto);
+
+    void updateScore(ScoreUpdateDTO dto);
+
+    void deleteScore(Long id);
+
+    IPage<ScoreVO> pageQuery(ScoreQueryDTO dto);
 }
