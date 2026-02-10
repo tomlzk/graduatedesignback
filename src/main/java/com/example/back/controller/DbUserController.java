@@ -1,14 +1,14 @@
 package com.example.back.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.example.back.dto.LoginDTO;
-import com.example.back.dto.RegisterDTO;
-import com.example.back.dto.UpdateUserDTO;
-import com.example.back.dto.UserQueryDTO;
+import com.example.back.dto.user.LoginDTO;
+import com.example.back.dto.user.RegisterDTO;
+import com.example.back.dto.user.UpdateUserDTO;
+import com.example.back.dto.user.UserQueryDTO;
 import com.example.back.service.IDbUserService;
 import com.example.back.utils.base.Result;
-import com.example.back.vo.LoginVO;
-import com.example.back.vo.UserVO;
+import com.example.back.vo.user.LoginVO;
+import com.example.back.vo.user.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

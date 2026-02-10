@@ -7,4 +7,5 @@ public class ScoreUpdateDTO {
 
     private Long id;       // 成绩ID
     private Integer score; // 新成绩
+    private String result;
 }

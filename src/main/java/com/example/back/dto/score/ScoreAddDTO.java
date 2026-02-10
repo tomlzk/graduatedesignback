@@ -14,4 +14,8 @@ public class ScoreAddDTO {
      * 成绩
      */
     private Integer score;
+    /**
+     * 结果
+     */
+    private String result;
 }

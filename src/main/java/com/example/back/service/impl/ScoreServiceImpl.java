@@ -1,20 +1,16 @@
 package com.example.back.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.back.dto.score.ScoreAddDTO;
 import com.example.back.dto.score.ScoreQueryDTO;
 import com.example.back.dto.score.ScoreUpdateDTO;
 import com.example.back.entity.Score;
 import com.example.back.mapper.ScoreMapper;
 import com.example.back.service.IScoreService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.back.vo.score.ScoreVO;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * <p>
@@ -28,6 +24,11 @@ import java.util.List;
 public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements IScoreService {
 
     private static final int PASS_SCORE = 60;
+    private final ScoreMapper scoreMapper;
+
+    public ScoreServiceImpl(ScoreMapper scoreMapper) {
+        this.scoreMapper = scoreMapper;
+    }
 
     @Override
     public void addScore(ScoreAddDTO dto) {
@@ -42,7 +43,7 @@ public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements
         Score score = new Score();
         score.setEnrollId(dto.getEnrollId());
         score.setScore(dto.getScore());
-        score.setResult(dto.getScore() >= PASS_SCORE ? "pass" : "fail");
+        score.setResult(dto.getResult());
 
         save(score);
     }
@@ -56,7 +57,7 @@ public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements
         }
 
         score.setScore(dto.getScore());
-        score.setResult(dto.getScore() >= PASS_SCORE ? "pass" : "fail");
+        score.setResult(dto.getResult());
 
         updateById(score);
     }
@@ -76,22 +77,6 @@ public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements
     public IPage<ScoreVO> pageQuery(ScoreQueryDTO dto) {
         Page<Score> page = new Page<>(dto.getPageNum(), dto.getPageSize());
 
-        LambdaQueryWrapper<Score> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(dto.getEnrollId() != null, Score::getEnrollId, dto.getEnrollId())
-                .eq(dto.getResult() != null, Score::getResult, dto.getResult());
-
-        IPage<Score> scorePage = page(page, wrapper);
-
-        Page<ScoreVO> voPage = new Page<>();
-        BeanUtils.copyProperties(scorePage, voPage);
-
-        List<ScoreVO> voList = scorePage.getRecords().stream().map(item -> {
-            ScoreVO vo = new ScoreVO();
-            BeanUtils.copyProperties(item, vo);
-            return vo;
-        }).toList();
-
-        voPage.setRecords(voList);
-        return voPage;
+        return scoreMapper.pageQuery(page, dto);
     }
 }

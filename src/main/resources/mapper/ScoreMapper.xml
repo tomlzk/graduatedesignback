@@ -2,4 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.back.mapper.ScoreMapper">
 
+    <select id="pageQuery" resultType="com.example.back.vo.score.ScoreVO">
+        SELECT
+        s.id,
+        s.enroll_id,
+        e.user_id,
+        u.name,
+        e.exam_id,
+        ex.exam_name,
+        s.score,
+        s.result
+        FROM score s
+        LEFT JOIN enroll e ON s.enroll_id = e.id
+        LEFT JOIN user u ON e.user_id = u.id
+        LEFT JOIN exam ex ON e.exam_id = ex.id
+        <where>
+            <if test="dto.enrollId != null">
+                s.enroll_id = #{dto.enrollId}
+            </if>
+            <if test="dto.result != null">
+                AND s.result = #{dto.result}
+            </if>
+        </where>
+    </select>
 </mapper>

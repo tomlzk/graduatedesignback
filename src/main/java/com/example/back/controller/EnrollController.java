@@ -9,8 +9,6 @@ import com.example.back.vo.enroll.EnrollVO;
 import com.example.back.utils.base.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import javax.annotation.Resource;
-import java.util.List;
 
 
 /**
@@ -37,13 +35,13 @@ public class EnrollController {
      *
      * @return
      */
-    @PostMapping
+    @PostMapping("/create")
     public Result<Boolean> create(@RequestBody EnrollCreateDTO dto) {
         enrollService.createEnroll(dto);
         return Result.success();
     }
 
-    @GetMapping
+    @GetMapping("/query")
     public Result<IPage<EnrollVO>> query(EnrollQueryDTO queryDTO) {
         return Result.success(enrollService.queryEnroll(queryDTO));
     }

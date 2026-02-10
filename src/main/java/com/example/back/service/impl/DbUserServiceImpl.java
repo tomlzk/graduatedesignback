@@ -1,23 +1,21 @@
 package com.example.back.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.back.dto.LoginDTO;
-import com.example.back.dto.RegisterDTO;
-import com.example.back.dto.UpdateUserDTO;
-import com.example.back.dto.UserQueryDTO;
+import com.example.back.dto.user.LoginDTO;
+import com.example.back.dto.user.RegisterDTO;
+import com.example.back.dto.user.UpdateUserDTO;
+import com.example.back.dto.user.UserQueryDTO;
 import com.example.back.entity.DbUser;
 import com.example.back.mapper.DbUserMapper;
 import com.example.back.service.IDbUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.back.utils.base.Result;
-import com.example.back.vo.LoginVO;
-import com.example.back.vo.UserVO;
+import com.example.back.vo.user.LoginVO;
+import com.example.back.vo.user.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Wrapper;
 import java.time.LocalDateTime;
 import java.util.List;
 

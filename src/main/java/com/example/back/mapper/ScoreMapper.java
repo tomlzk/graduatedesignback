@@ -1,8 +1,13 @@
 package com.example.back.mapper;
 
-import com.example.back.entity.Score;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.back.dto.score.ScoreQueryDTO;
+import com.example.back.entity.Score;
+import com.example.back.vo.score.ScoreVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.repository.query.Param;
 
 /**
  * <p>
@@ -15,4 +20,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ScoreMapper extends BaseMapper<Score> {
 
+    IPage<ScoreVO> pageQuery(Page<?> page, @Param("dto") ScoreQueryDTO dto);
 }

@@ -2,19 +2,18 @@ package com.example.back.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.back.dto.enroll.EnrollAuditDTO;
 import com.example.back.dto.enroll.EnrollCreateDTO;
 import com.example.back.dto.enroll.EnrollQueryDTO;
 import com.example.back.entity.Enroll;
 import com.example.back.mapper.EnrollMapper;
 import com.example.back.service.IEnrollService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.back.vo.enroll.EnrollVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * <p>
@@ -41,15 +40,10 @@ public class EnrollServiceImpl extends ServiceImpl<EnrollMapper, Enroll> impleme
 
     @Override
     public IPage<EnrollVO> queryEnroll(EnrollQueryDTO dto) {
-        Page<Enroll> enrollVOPage = new Page<>(dto.getPageNum(), dto.getPageSize());
-
-        lambdaQuery()
-                .eq(dto.getUserId() != null, Enroll::getUserId, dto.getUserId())
-                .eq(dto.getExamId() != null, Enroll::getExamId, dto.getExamId())
-                .page(enrollVOPage);
-
-        return enrollVOPage.convert(this::toEnrollVO);
+        Page<EnrollVO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
+        return enrollMapper.pageQuery(page, dto);
     }
+
 
     /**
      *
